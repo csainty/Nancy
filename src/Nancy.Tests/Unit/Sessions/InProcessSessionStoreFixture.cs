@@ -6,7 +6,7 @@
 
     public class IntegrationTests
     {
-        private InProcessSessionStore store = InProcessSessionStore.Instance;
+        private InProcessSessionStore store = new InProcessSessionStore();
 
         [Fact]
         public void Should_be_able_to_store_and_retrieve_a_value()
@@ -15,6 +15,21 @@
             var d = store.Load("Test");
             d.ShouldNotBeNull();
             d["Key"].ShouldEqual("Value");
+        }
+
+        [Fact]
+        public void Should_work_across_instances()
+        {
+            store.Save("T", new Dictionary<string, object> { { "Key", "Value" } });
+
+            var s = new InProcessSessionStore();
+            s.Load("T").ShouldNotBeNull();
+        }
+
+        [Fact]
+        public void Should_return_null_when_not_found()
+        {
+            store.Load("Foo").ShouldBeNull();
         }
     }
 }
