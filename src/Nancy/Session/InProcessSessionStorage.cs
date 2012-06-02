@@ -1,8 +1,8 @@
-﻿using System.Collections.Concurrent;
-using System.Collections.Generic;
-
-namespace Nancy.Session
+﻿namespace Nancy.Session
 {
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+
     public class InProcessSessionStore : ISessionStore
     {
         private static InProcessSessionStore _Instance = new InProcessSessionStore();

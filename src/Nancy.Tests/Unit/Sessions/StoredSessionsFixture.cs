@@ -1,11 +1,11 @@
 ﻿namespace Nancy.Tests.Unit.Sessions
 {
     using System;
+    using System.Collections.Generic;
     using FakeItEasy;
     using Nancy.Bootstrapper;
     using Nancy.Session;
     using Xunit;
-    using System.Collections.Generic;
 
     public class StoredSessionsFixture
     {

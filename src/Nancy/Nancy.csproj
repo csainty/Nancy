@@ -161,7 +161,7 @@
     <Compile Include="Routing\RouteCandidateExtensions.cs" />
     <Compile Include="Routing\OptionsRoute.cs" />
     <Compile Include="Session\ISessionStore.cs" />
-    <Compile Include="Storage\InProcessStorage.cs" />
+    <Compile Include="Session\InProcessSessionStorage.cs" />
     <Compile Include="Session\StoredSessions.cs" />
     <Compile Include="StaticContentApplicationStartup.cs" />
     <Compile Include="Conventions\ViewLocationConventions.cs" />

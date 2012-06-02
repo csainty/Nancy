@@ -214,6 +214,7 @@
     <Compile Include="Unit\Sessions\CookieBasedSessionsFixture.cs" />
     <Compile Include="Unit\Cryptography\RijndaelEncryptionProviderFixture.cs" />
     <Compile Include="Unit\Sessions\DefaultSessionObjectFormatterFixture.cs" />
+    <Compile Include="Unit\Sessions\InProcessSessionStoreFixture.cs" />
     <Compile Include="Unit\Sessions\NullSessionProviderFixture.cs" />
     <Compile Include="Unit\Sessions\SessionFixture.cs" />
     <Compile Include="Unit\Sessions\StoredSessionsFixture.cs" />

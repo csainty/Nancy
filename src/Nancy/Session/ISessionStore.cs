@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace Nancy
+﻿namespace Nancy.Session
 {
+    using System.Collections.Generic;
+
     public interface ISessionStore
     {
         IDictionary<string,object> Load(string key);
