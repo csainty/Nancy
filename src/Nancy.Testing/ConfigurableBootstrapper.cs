@@ -1254,6 +1254,28 @@ namespace Nancy.Testing
                 this.bootstrapper.configuration.WithIgnoredAssembly(ignoredPredicate);
                 return this;
             }
+
+            /// <summary>
+            /// Configures the bootstrapper to use specific session stores
+            /// </summary>
+            /// <param name="serializers">Collection of session store types</param>
+            /// <returns>A reference to the current <see cref="ConfigurableBoostrapperConfigurator"/>.</returns>
+            public ConfigurableBoostrapperConfigurator SessionStores(params Type[] stores)
+            {
+                this.bootstrapper.configuration.SessionStores = new List<Type>(stores);
+                return this;
+            }
+
+            /// <summary>
+            /// Configures the bootstrapper to use specific cache stores
+            /// </summary>
+            /// <param name="serializers">Collection of cache store types</param>
+            /// <returns>A reference to the current <see cref="ConfigurableBoostrapperConfigurator"/>.</returns>
+            public ConfigurableBoostrapperConfigurator CacheStores(params Type[] stores)
+            {
+                this.bootstrapper.configuration.CacheStores = new List<Type>(stores);
+                return this;
+            }
         }
 
         /// <summary>

@@ -5,15 +5,17 @@ namespace Nancy.Bootstrapper
     using System.ComponentModel;
     using System.Linq;
     using System.Reflection;
-
+    
+    using Nancy.Cache;
     using Nancy.Diagnostics;
     using Nancy.ErrorHandling;
     using Nancy.ModelBinding;
     using Nancy.Routing;
+    using Nancy.Session;
+    using Nancy.Validation;
     using Nancy.ViewEngines;
     using Responses;
     using Security;
-    using Nancy.Validation;
 
     /// <summary>
     /// Configuration class for Nancy's internals.
@@ -81,6 +83,8 @@ namespace Nancy.Bootstrapper
                         Serializers = new List<Type>(new[] { typeof(DefaultJsonSerializer), typeof(DefaultXmlSerializer) }),
                         InteractiveDiagnosticProviders = new List<Type>(AppDomainAssemblyTypeScanner.TypesOf<IDiagnosticsProvider>()),
                         RequestTracing = typeof(DefaultRequestTracing),
+                        SessionStores = new List<Type>(new [] { typeof(InProcessSessionStore) }.Concat(AppDomainAssemblyTypeScanner.TypesOf<ISessionStore>(true))),
+                        CacheStores = new List<Type>(new[] { typeof(InProcessCacheStore) }.Concat(AppDomainAssemblyTypeScanner.TypesOf<ICacheStore>(true))),
                     };
             }
         }
@@ -138,6 +142,10 @@ namespace Nancy.Bootstrapper
         public IList<Type> InteractiveDiagnosticProviders { get; set; }
 
         public Type RequestTracing { get; set; }
+
+        public IList<Type> SessionStores { get; set; }
+
+        public IList<Type> CacheStores { get; set; }
 
         public IEnumerable<Func<Assembly, bool>> IgnoredAssemblies
         {
@@ -241,6 +249,8 @@ namespace Nancy.Bootstrapper
                 new CollectionTypeRegistration(typeof(ISerializer), this.Serializers), 
                 new CollectionTypeRegistration(typeof(IErrorHandler), this.ErrorHandlers), 
                 new CollectionTypeRegistration(typeof(IDiagnosticsProvider), this.InteractiveDiagnosticProviders), 
+                new CollectionTypeRegistration(typeof(ISessionStore), this.SessionStores),
+                new CollectionTypeRegistration(typeof(ICacheStore), this.CacheStores),
             };
         }
 
