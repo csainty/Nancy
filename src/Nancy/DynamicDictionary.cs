@@ -99,7 +99,7 @@
         /// Gets or sets the <see cref="DynamicDictionaryValue"/> with the specified name.
         /// </summary>
         /// <value>A <see cref="DynamicDictionaryValue"/> instance containing a value.</value>
-        public dynamic this[string name]
+        public virtual dynamic this[string name]
         {
             get
             {
@@ -227,7 +227,7 @@
         /// <summary>
         /// Removes all items from the <see cref="DynamicDictionary"/>.
         /// </summary>
-        public void Clear()
+        public virtual void Clear()
         {
             this.dictionary.Clear();
         }
@@ -279,7 +279,7 @@
         /// </summary>
         /// <returns><see langword="true" /> if the element is successfully removed; otherwise, <see langword="false" />.</returns>
         /// <param name="key">The key of the element to remove.</param>
-        public bool Remove(string key)
+        public virtual bool Remove(string key)
         {
             return this.dictionary.Remove(key);
         }
@@ -289,7 +289,7 @@
         /// </summary>
         /// <returns><see langword="true" /> if <paramref name="item"/> was successfully removed from the <see cref="DynamicDictionary"/>; otherwise, <see langword="false" />.</returns>
         /// <param name="item">The object to remove from the <see cref="DynamicDictionary"/>.</param>
-        public bool Remove(KeyValuePair<string, dynamic> item)
+        public virtual bool Remove(KeyValuePair<string, dynamic> item)
         {
             var dynamicValueKeyValuePair = 
                 GetDynamicKeyValuePair(item);

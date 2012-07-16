@@ -192,6 +192,7 @@
     <Compile Include="Routing\ParameterSegmentInformation.cs" />
     <Compile Include="Routing\RouteCandidateExtensions.cs" />
     <Compile Include="Routing\OptionsRoute.cs" />
+    <Compile Include="Session\DynamicSession.cs" />
     <Compile Include="StaticContentApplicationStartup.cs" />
     <Compile Include="Conventions\ViewLocationConventions.cs" />
     <Compile Include="Cryptography\Base64Helpers.cs" />
