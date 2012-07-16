@@ -217,6 +217,7 @@
     <Compile Include="Unit\Security\DefaultCsrfTokenValidatorFixture.cs" />
     <Compile Include="Unit\Security\ModuleSecurityFixture.cs" />
     <Compile Include="Unit\Cryptography\RijndaelEncryptionProviderFixture.cs" />
+    <Compile Include="Unit\Sessions\CookieBasedSessionStoreFixture.cs" />
     <Compile Include="Unit\Sessions\DefaultSessionObjectFormatterFixture.cs" />
     <Compile Include="Unit\Sessions\DynamicSessionFixture.cs" />
     <Compile Include="Unit\Sessions\SessionApplicationStartupFixture.cs" />

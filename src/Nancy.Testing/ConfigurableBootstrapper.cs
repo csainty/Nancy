@@ -17,6 +17,7 @@ namespace Nancy.Testing
     using Nancy.ViewEngines;
     using Responses.Negotiation;
     using Nancy.Validation;
+    using Nancy.Session;
 
     /// <summary>
     /// A Nancy boostrapper that can be configured with either Type or Instance overrides for all Nancy types.
@@ -1513,6 +1514,30 @@ namespace Nancy.Testing
                 return this;
             }
 
+            /// <summary>
+            /// Configures the bootstrapper to use the provided instance of <see cref="ISessionStore"/>.
+            /// </summary>
+            /// <param name="sessionStore">The <see cref="ISessionStore"/> instance that should be used by the bootstrapper.</param>
+            /// <returns>A reference to the current <see cref="ConfigurableBoostrapperConfigurator"/>.</returns>
+            public ConfigurableBoostrapperConfigurator SessionStore(ISessionStore sessionStore)
+            {
+                this.bootstrapper.registeredInstances.Add(
+                    new InstanceRegistration(typeof(ISessionStore), sessionStore));
+
+                return this;
+            }
+
+            /// <summary>
+            /// Configures the bootstrapper to create an <see cref="ISessionStore"/> instance of the specified type.
+            /// </summary>
+            /// <typeparam name="T">The type of the <see cref="ISessionStore"/> that the bootstrapper should use.</typeparam>
+            /// <returns>A reference to the current <see cref="ConfigurableBoostrapperConfigurator"/>.</returns>
+            public ConfigurableBoostrapperConfigurator SessionStore<T>() where T : ISessionStore
+            {
+                this.bootstrapper.configuration.SessionStore = typeof(T);
+                return this;
+            }
+			
             public ConfigurableBoostrapperConfigurator ApplicationStartup(Action<TinyIoCContainer, IPipelines> action)
             {
                 this.bootstrapper.applicationStartupActions.Add(action);
