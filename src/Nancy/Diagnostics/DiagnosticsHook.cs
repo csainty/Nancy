@@ -12,6 +12,7 @@ namespace Nancy.Diagnostics
     using Responses;
     using Responses.Negotiation;
     using Routing;
+    using Session;
 
     public static class DiagnosticsHook
     {
@@ -22,7 +23,7 @@ namespace Nancy.Diagnostics
             var keyGenerator = new DefaultModuleKeyGenerator();
             var diagnosticsModuleCatalog = new DiagnosticsModuleCatalog(keyGenerator, providers, rootPathProvider, requestTracing, configuration, diagnosticsConfiguration);
 
-            var diagnosticsRouteCache = new RouteCache(diagnosticsModuleCatalog, keyGenerator, new DefaultNancyContextFactory(), new DefaultRouteSegmentExtractor(), new DefaultRouteDescriptionProvider());
+            var diagnosticsRouteCache = new RouteCache(diagnosticsModuleCatalog, keyGenerator, new DefaultNancyContextFactory(new CookieBasedSessionStore(CryptographyConfiguration.Default, new DefaultObjectSerializer())), new DefaultRouteSegmentExtractor(), new DefaultRouteDescriptionProvider());
 
             var diagnosticsRouteResolver = new DefaultRouteResolver(
                 diagnosticsModuleCatalog,
