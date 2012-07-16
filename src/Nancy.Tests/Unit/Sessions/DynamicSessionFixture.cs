@@ -62,5 +62,12 @@
             Assert.True(provider.HasChanged);
         }
 
+        [Fact]
+        public void Should_start_unchanged()
+        {
+            dynamic session = new DynamicSession(new Dictionary<string, dynamic>() { { "Hello", "World" } });
+            Assert.False(session.HasChanged);
+            Assert.Equal("World", session.Hello);
+        }
     }
 }

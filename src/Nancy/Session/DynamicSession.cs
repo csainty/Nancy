@@ -9,6 +9,16 @@
 
         public bool HasChanged { get { return hasChanged; } }
 
+        public DynamicSession() { }
+
+        public DynamicSession(IDictionary<string, dynamic> items)
+        {
+            foreach (var item in items)
+            {
+                base[item.Key] = item.Value;
+            }
+        }
+
         public override bool TrySetMember(SetMemberBinder binder, object value)
         {
             hasChanged = true;
