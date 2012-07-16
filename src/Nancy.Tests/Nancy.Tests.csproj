@@ -219,6 +219,8 @@
     <Compile Include="Unit\Cryptography\RijndaelEncryptionProviderFixture.cs" />
     <Compile Include="Unit\Sessions\DefaultSessionObjectFormatterFixture.cs" />
     <Compile Include="Unit\Sessions\DynamicSessionFixture.cs" />
+    <Compile Include="Unit\Sessions\SessionApplicationStartupFixture.cs" />
+    <Compile Include="Unit\Sessions\SessionHooksFixture.cs" />
     <Compile Include="Unit\TextFormatterFixture.cs" />
     <Compile Include="Unit\StaticContentConventionBuilderFixture.cs" />
     <Compile Include="Unit\UrlFixture.cs" />
