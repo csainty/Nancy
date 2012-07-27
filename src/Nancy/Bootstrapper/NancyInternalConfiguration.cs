@@ -88,7 +88,7 @@ namespace Nancy.Bootstrapper
                         Diagnostics = typeof(DefaultDiagnostics),
                         RouteSegmentExtractor = typeof(DefaultRouteSegmentExtractor),
                         RouteDescriptionProvider = typeof(DefaultRouteDescriptionProvider),
-						SessionStore = AppDomainAssemblyTypeScanner.TypesOf<ISessionStore>().First(),
+						SessionStore = typeof(CookieBasedSessionStore),
                     };
             }
         }

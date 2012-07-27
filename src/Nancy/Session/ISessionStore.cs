@@ -6,6 +6,6 @@
     {
         bool TryLoadSession(Request request, out IDictionary<string, object> items);
         
-        void SaveSession(NancyContext request, IDictionary<string, object> items);
+        void SaveSession(NancyContext context, IDictionary<string, object> items);
     }
 }
