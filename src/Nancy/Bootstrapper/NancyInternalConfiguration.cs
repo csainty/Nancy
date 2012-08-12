@@ -8,10 +8,10 @@ namespace Nancy.Bootstrapper
     using ErrorHandling;
     using ModelBinding;
     using Responses;
-	using Responses.Negotiation;
+    using Responses.Negotiation;
     using Routing;
     using Security;
-	using Session;
+    using Session;
     using Validation;
     using ViewEngines;
 
@@ -248,7 +248,7 @@ namespace Nancy.Bootstrapper
                 new TypeRegistration(typeof(ICsrfTokenValidator), this.CsrfTokenValidator), 
                 new TypeRegistration(typeof(IObjectSerializer), this.ObjectSerializer), 
                 new TypeRegistration(typeof(IModelValidatorLocator), this.ModelValidatorLocator),
-                new TypeRegistration(typeof(IRequestTracing), this.RequestTracing), 
+                new TypeRegistration(typeof(IRequestTracing), this.RequestTracing),
                 new TypeRegistration(typeof(ISessionStore), this.SessionStore),
                 new TypeRegistration(typeof(IRouteInvoker), this.RouteInvoker),
                 new TypeRegistration(typeof(IRequestDispatcher), this.RequestDispatcher),

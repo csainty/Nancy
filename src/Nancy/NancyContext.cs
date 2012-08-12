@@ -4,9 +4,9 @@ namespace Nancy
     using System.Collections.Generic;
     using System.Linq;
     using Diagnostics;
+    using Responses.Negotiation;
     using Security;
     using Session;
-	using Nancy.Responses.Negotiation;
 	using Nancy.Validation;
 
     /// <summary>
