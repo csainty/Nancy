@@ -115,6 +115,7 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Extensions\ResponseExtensions.cs" />
+    <Compile Include="Fakes\FakeIdBasedSessionStore.cs" />
     <Compile Include="Fakes\FakeNancyModuleNoRoutes.cs" />
     <Compile Include="Fakes\FakeNancyModuleWithBasePath.cs" />
     <Compile Include="Fakes\FakeNancyModuleWithDependency.cs" />
@@ -220,6 +221,7 @@
     <Compile Include="Unit\Sessions\CookieBasedSessionStoreFixture.cs" />
     <Compile Include="Unit\Sessions\DefaultSessionObjectFormatterFixture.cs" />
     <Compile Include="Unit\Sessions\DynamicSessionFixture.cs" />
+    <Compile Include="Unit\Sessions\AbstractIdBasedSessionStoreFixture.cs" />
     <Compile Include="Unit\Sessions\SessionApplicationStartupFixture.cs" />
     <Compile Include="Unit\Sessions\SessionHooksFixture.cs" />
     <Compile Include="Unit\TextFormatterFixture.cs" />

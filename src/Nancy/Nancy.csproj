@@ -192,8 +192,10 @@
     <Compile Include="Routing\ParameterSegmentInformation.cs" />
     <Compile Include="Routing\RouteCandidateExtensions.cs" />
     <Compile Include="Routing\OptionsRoute.cs" />
+    <Compile Include="Session\AbstractIdBasedSessionStore.cs" />
     <Compile Include="Session\CookieBasedSessionStore.cs" />
     <Compile Include="Session\DynamicSession.cs" />
+    <Compile Include="Session\InProcessSessionStore.cs" />
     <Compile Include="Session\ISessionStore.cs" />
     <Compile Include="Session\SessionApplicationStartup.cs" />
     <Compile Include="StaticContentApplicationStartup.cs" />
