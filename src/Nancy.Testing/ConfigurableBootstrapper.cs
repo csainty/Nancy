@@ -7,6 +7,7 @@ namespace Nancy.Testing
     using System.Reflection;
 
     using Nancy.Bootstrapper;
+    using Nancy.Cache;
     using Nancy.Conventions;
     using Nancy.Diagnostics;
     using Nancy.ErrorHandling;
@@ -18,7 +19,7 @@ namespace Nancy.Testing
     using Responses.Negotiation;
     using Nancy.Validation;
     using Nancy.Session;
-
+    
     /// <summary>
     /// A Nancy boostrapper that can be configured with either Type or Instance overrides for all Nancy types.
     /// </summary>
@@ -1535,6 +1536,30 @@ namespace Nancy.Testing
             public ConfigurableBoostrapperConfigurator SessionStore<T>() where T : ISessionStore
             {
                 this.bootstrapper.configuration.SessionStore = typeof(T);
+                return this;
+            }
+
+            /// <summary>
+            /// Configures the bootstrapper to use the provided instance of <see cref="ICacheStore"/>.
+            /// </summary>
+            /// <param name="cacheStore">The <see cref="ICacheStore"/> instance that should be used by the bootstrapper.</param>
+            /// <returns>A reference to the current <see cref="ConfigurableBoostrapperConfigurator"/>.</returns>
+            public ConfigurableBoostrapperConfigurator CacheStore(ICacheStore cacheStore)
+            {
+                this.bootstrapper.registeredInstances.Add(
+                    new InstanceRegistration(typeof(ICacheStore), cacheStore));
+
+                return this;
+            }
+
+            /// <summary>
+            /// Configures the bootstrapper to create an <see cref="ICacheStore"/> instance of the specified type.
+            /// </summary>
+            /// <typeparam name="T">The type of the <see cref="ICacheStore"/> that the bootstrapper should use.</typeparam>
+            /// <returns>A reference to the current <see cref="ConfigurableBoostrapperConfigurator"/>.</returns>
+            public ConfigurableBoostrapperConfigurator CacheStore<T>() where T : ICacheStore
+            {
+                this.bootstrapper.configuration.CacheStore = typeof(T);
                 return this;
             }
 			

@@ -4,6 +4,7 @@ namespace Nancy.Bootstrapper
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    using Cache;
     using Diagnostics;
     using ErrorHandling;
     using ModelBinding;
@@ -88,7 +89,8 @@ namespace Nancy.Bootstrapper
                         Diagnostics = typeof(DefaultDiagnostics),
                         RouteSegmentExtractor = typeof(DefaultRouteSegmentExtractor),
                         RouteDescriptionProvider = typeof(DefaultRouteDescriptionProvider),
-						SessionStore = typeof(CookieBasedSessionStore),
+                        SessionStore = typeof(CookieBasedSessionStore),
+                        CacheStore = typeof(InProcessCacheStore),
                     };
             }
         }
@@ -160,6 +162,8 @@ namespace Nancy.Bootstrapper
         public Type RouteSegmentExtractor { get; set; }
 
         public Type RouteDescriptionProvider { get; set; }
+		
+        public Type CacheStore { get; set; }
 
         public IEnumerable<Func<Assembly, bool>> IgnoredAssemblies
         {
@@ -254,7 +258,8 @@ namespace Nancy.Bootstrapper
                 new TypeRegistration(typeof(IRequestDispatcher), this.RequestDispatcher),
                 new TypeRegistration(typeof(IDiagnostics), this.Diagnostics), 
                 new TypeRegistration(typeof(IRouteSegmentExtractor), this.RouteSegmentExtractor),
-                new TypeRegistration(typeof(IRouteDescriptionProvider), this.RouteDescriptionProvider)
+                new TypeRegistration(typeof(IRouteDescriptionProvider), this.RouteDescriptionProvider),
+                new TypeRegistration(typeof(ICacheStore), this.CacheStore),
             };
         }
 
