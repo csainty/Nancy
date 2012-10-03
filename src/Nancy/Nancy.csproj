@@ -115,7 +115,9 @@
     <Compile Include="Bootstrapper\IApplicationStartup.cs" />
     <Compile Include="Bootstrapper\NancyInternalConfiguration.cs" />
     <Compile Include="Bootstrapper\Pipelines.cs" />
+    <Compile Include="Cache\ICacheStore.cs" />
     <Compile Include="Bootstrapper\ScanMode.cs" />
+    <Compile Include="Cache\InProcessCacheStore.cs" />
     <Compile Include="Conventions\AcceptHeaderCoercionConventions.cs" />
     <Compile Include="Conventions\BuiltInAcceptHeaderCoercions.cs" />
     <Compile Include="Conventions\DefaultAcceptHeaderCoercionConventions.cs" />
