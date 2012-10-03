@@ -10,8 +10,8 @@
 
         public IDictionary<string, IDictionary<string, object>> Items { get { return _Items; } }
 
-        public FakeIdBasedSessionStore(CryptographyConfiguration cryptographyConfiguration, IObjectSerializer serializer)
-            : base(cryptographyConfiguration, serializer)
+        public FakeIdBasedSessionStore(CryptographyConfiguration cryptographyConfiguration)
+            : base(cryptographyConfiguration)
         {
         }
 

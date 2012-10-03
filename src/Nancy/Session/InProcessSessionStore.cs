@@ -8,7 +8,7 @@
     {
         private static ConcurrentDictionary<string, IDictionary<string, object>> session = new ConcurrentDictionary<string, IDictionary<string, object>>();
 
-        public InProcessSessionStore(CryptographyConfiguration cryptographyConfiguration, IObjectSerializer serializer) : base(cryptographyConfiguration, serializer) { }
+        public InProcessSessionStore(CryptographyConfiguration cryptographyConfiguration) : base(cryptographyConfiguration) { }
 
         protected override bool TryLoad(string id, out IDictionary<string, object> items)
         {

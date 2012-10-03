@@ -19,22 +19,16 @@ namespace Nancy.Session
         /// Provider for generating hmacs
         /// </summary>
         private readonly IHmacProvider hmacProvider;
-
-        /// <summary>
-        /// Formatter for de/serializing the session objects
-        /// </summary>
-        private readonly IObjectSerializer serializer;
-
+               
         /// <summary>
         /// Cookie name to store session id
         /// </summary>
         private static string cookieName = "_nsid";
 
-        public AbstractIdBasedSessionStore(CryptographyConfiguration cryptographyConfiguration, IObjectSerializer serializer)
+        public AbstractIdBasedSessionStore(CryptographyConfiguration cryptographyConfiguration)
         {
             this.encryptionProvider = cryptographyConfiguration.EncryptionProvider;
             this.hmacProvider = cryptographyConfiguration.HmacProvider;
-            this.serializer = serializer;
         }
 
         public static string CookieName { get { return cookieName; } }

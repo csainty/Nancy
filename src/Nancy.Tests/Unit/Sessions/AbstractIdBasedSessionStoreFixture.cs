@@ -15,15 +15,13 @@
         private readonly AbstractIdBasedSessionStore provider;
         private readonly IEncryptionProvider fakeEncryptionProvider;
         private readonly IHmacProvider fakeHmacProvider;
-        private readonly IObjectSerializer fakeSerializer;
         private readonly NancyContext context;
 
         public AbstractIdBasedSessionStoreFixture()
         {
             fakeEncryptionProvider = A.Fake<IEncryptionProvider>();
             fakeHmacProvider = A.Fake<IHmacProvider>();
-            fakeSerializer = A.Fake<IObjectSerializer>();
-            provider = new FakeIdBasedSessionStore(new CryptographyConfiguration(fakeEncryptionProvider, fakeHmacProvider), fakeSerializer);
+            provider = new FakeIdBasedSessionStore(new CryptographyConfiguration(fakeEncryptionProvider, fakeHmacProvider));
             context = new NancyContext();
             context.SessionStore = provider;
             context.Request = new Request("GET", "/", "http");
