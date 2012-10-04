@@ -3,6 +3,7 @@ namespace Nancy
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Cache;
     using Diagnostics;
     using Responses.Negotiation;
     using Security;
@@ -97,6 +98,11 @@ namespace Nancy
 		/// Current Session store
 		/// </summary>
 		public ISessionStore SessionStore { get; set; }
+
+        /// <summary>
+        /// Current Cache Store
+        /// </summary>
+        public ICacheStore Cache { get; set; }
 
         /// <summary>
         /// Context of content negotiation (if relevent)
