@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Nancy.Cookies;
-using Nancy.Cryptography;
-using Nancy.Helpers;
-
-namespace Nancy.Session
+﻿namespace Nancy.Session
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using Cookies;
+    using Cryptography;
+    using Helpers;
+
+    /// <summary>
+    /// An abstract base class for building an <see cref="ISessionStore"/> implemtation that stores a session id in the user's cookies
+    /// </summary>
     public abstract class AbstractIdBasedSessionStore : ISessionStore
     {
         /// <summary>
@@ -36,7 +39,7 @@ namespace Nancy.Session
         public bool TryLoadSession(Request request, out IDictionary<string, object> items)
         {
             var cookieData = request.Cookies.ContainsKey(CookieName) ? HttpUtility.UrlDecode(request.Cookies[CookieName]) : String.Empty;
-            var id = String.IsNullOrEmpty(cookieData) ? String.Empty : DecryptSessionId(cookieData);
+            var id = String.IsNullOrEmpty(cookieData) ? String.Empty : ExtractSessionId(cookieData);
 
             if (id == String.Empty)
             {
@@ -52,7 +55,7 @@ namespace Nancy.Session
         public void SaveSession(NancyContext context, IDictionary<string, object> items)
         {
             var cookieData = context.Request.Cookies.ContainsKey(CookieName) ? HttpUtility.UrlDecode(context.Request.Cookies[CookieName]) : String.Empty;
-            var id = String.IsNullOrEmpty(cookieData) ? String.Empty : DecryptSessionId(cookieData);
+            var id = String.IsNullOrEmpty(cookieData) ? String.Empty : ExtractSessionId(cookieData);
 
             if (id == String.Empty)
             {
@@ -66,7 +69,12 @@ namespace Nancy.Session
             Save(id, items);
         }
 
-        private string DecryptSessionId(string cookieData)
+        /// <summary>
+        /// Extract the session id from the encrypted cookie data
+        /// </summary>
+        /// <param name="cookieData">The value of the user's session cookie</param>
+        /// <returns>The session id</returns>
+        private string ExtractSessionId(string cookieData)
         {
             var hmacLength = Base64Helpers.GetBase64Length(this.hmacProvider.HmacLength);
             var hmacString = cookieData.Substring(0, hmacLength);

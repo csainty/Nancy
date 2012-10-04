@@ -2,6 +2,9 @@
 {
     using System.Collections.Concurrent;
 
+    /// <summary>
+    /// An in-process implementation of <see cref="ICacheStore"/>
+    /// </summary>
     public class InProcessCacheStore : ICacheStore
     {
         private static ConcurrentDictionary<string, object> items = new ConcurrentDictionary<string, object>();

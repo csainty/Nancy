@@ -1,7 +1,5 @@
 namespace Nancy
 {
-    using Session;
-
     /// <summary>
     /// Creates NancyContext instances
     /// </summary>

@@ -319,6 +319,10 @@
             return key.Replace("-", string.Empty);
         }
 
+        /// <summary>
+        /// Returns an unwrapped dictionary where the items are their original values types and not wrapped in <see cref="DynamicDictionaryValue"/>
+        /// </summary>
+        /// <returns>A new dictionary containing the unwrapped items</returns>
         public IDictionary<string, object> GetValueDictionary()
         {
             return this.dictionary.ToDictionary(d => d.Key, d => ((DynamicDictionaryValue)d.Value).Value);

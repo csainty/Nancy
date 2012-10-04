@@ -2,8 +2,11 @@
 {
     using System.Collections.Concurrent;
     using System.Collections.Generic;
-    using Nancy.Cryptography;
+    using Cryptography;
 
+    /// <summary>
+    /// An in-process implementation of <see cref="ISessionStgore"/> that stores the session id in user cookies
+    /// </summary>
     public class InProcessSessionStore : AbstractIdBasedSessionStore
     {
         private static ConcurrentDictionary<string, IDictionary<string, object>> session = new ConcurrentDictionary<string, IDictionary<string, object>>();
