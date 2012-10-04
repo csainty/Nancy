@@ -5,11 +5,11 @@
     using System.Linq;
     using System.Threading;
     using Bootstrapper;
-
     using Nancy.Cookies;
     using Nancy.Diagnostics;
     using Nancy.ErrorHandling;
     using Nancy.Routing;
+    using Nancy.Session;
 
     /// <summary>
     /// Default engine for handling Nancy <see cref="Request"/>s.
@@ -24,6 +24,7 @@
         private readonly IRequestTracing requestTracing;
         private readonly DiagnosticsConfiguration diagnosticsConfiguration;
         private readonly IEnumerable<IStatusCodeHandler> statusCodeHandlers;
+        private readonly ISessionStore sessionStore;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NancyEngine"/> class.
@@ -32,8 +33,7 @@
         /// <param name="contextFactory">A factory for creating contexts</param>
         /// <param name="statusCodeHandlers">Error handlers</param>
         /// <param name="requestTracing">The request tracing instance.</param>
-        /// <param name="diagnosticsConfiguration"></param>
-        public NancyEngine(IRequestDispatcher dispatcher, INancyContextFactory contextFactory, IEnumerable<IStatusCodeHandler> statusCodeHandlers, IRequestTracing requestTracing, DiagnosticsConfiguration diagnosticsConfiguration)
+        public NancyEngine(IRequestDispatcher dispatcher, INancyContextFactory contextFactory, IEnumerable<IStatusCodeHandler> errorHandlers, IRequestTracing requestTracing, DiagnosticsConfiguration diagnosticsConfiguration, ISessionStore sessionStore)
         {
             if (dispatcher == null)
             {
@@ -50,10 +50,16 @@
                 throw new ArgumentNullException("statusCodeHandlers");
             }
 
+            if (sessionStore == null)
+            {
+                throw new ArgumentNullException("sessionStore");
+            }
+
             this.dispatcher = dispatcher;
             this.contextFactory = contextFactory;
             this.statusCodeHandlers = statusCodeHandlers;
             this.requestTracing = requestTracing;
+            this.sessionStore = sessionStore;
             this.diagnosticsConfiguration = diagnosticsConfiguration;
         }
 
@@ -88,6 +94,7 @@
 
             var context = this.contextFactory.Create();
             context.Request = request;
+            context.SessionStore = this.sessionStore;
 
             if (preRequest != null)
             {
