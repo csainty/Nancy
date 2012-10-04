@@ -108,15 +108,7 @@
                 sb.Append(HttpUtility.UrlEncode(kvp.Key));
                 sb.Append("=");
 
-                string objectString;
-                if (typeof(DynamicDictionaryValue).IsAssignableFrom(kvp.Value.GetType()))
-                {
-                    objectString = this.serializer.Serialize(((DynamicDictionaryValue)kvp.Value).Value);
-                }
-                else
-                {
-                    objectString = this.serializer.Serialize(kvp.Value);
-                }
+                string objectString = this.serializer.Serialize(kvp.Value);
 
                 sb.Append(HttpUtility.UrlEncode(objectString));
                 sb.Append(";");

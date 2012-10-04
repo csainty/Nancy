@@ -4,6 +4,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Dynamic;
+    using System.Linq;
     
     /// <summary>
     /// A dictionary that supports dynamic access.
@@ -316,6 +317,11 @@
         private static string GetNeutralKey(string key)
         {
             return key.Replace("-", string.Empty);
+        }
+
+        public IDictionary<string, object> GetValueDictionary()
+        {
+            return this.dictionary.ToDictionary(d => d.Key, d => ((DynamicDictionaryValue)d.Value).Value);
         }
     }
 }

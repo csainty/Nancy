@@ -1,6 +1,7 @@
 ﻿namespace Nancy.Session
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Bootstrapper;
 
     public class SessionApplicationStartup : IApplicationStartup
@@ -39,7 +40,7 @@
                 return;
             }
 
-            ctx.SessionStore.SaveSession(ctx, ctx.Request.Session);
+            ctx.SessionStore.SaveSession(ctx, ctx.Request.Session.GetValueDictionary());
         }
     }
 }
