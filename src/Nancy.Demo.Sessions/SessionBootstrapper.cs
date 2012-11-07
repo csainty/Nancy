@@ -2,7 +2,7 @@
 {
     using Nancy.Bootstrapper;
     using Nancy.Session;
-    using TinyIoC;
+    using Nancy.TinyIoc;
 
     public class SessionBootstrapper : DefaultNancyBootstrapper
     { 
