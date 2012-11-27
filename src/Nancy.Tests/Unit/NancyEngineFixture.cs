@@ -103,7 +103,7 @@ namespace Nancy.Tests.Unit
         { 
             // Given
             var exception =
-                Record.Exception(() => new NancyEngine(this.requestDispatcher, A.Fake<INancyContextFactory>(), new[] { this.errorHandler }, A.Fake<IRequestTracing>(), null, A.Fake<ICacheStore>()));
+                Record.Exception(() => new NancyEngine(this.requestDispatcher, A.Fake<INancyContextFactory>(), new[] { this.statusCodeHandler }, A.Fake<IRequestTracing>(), this.diagnosticsConfiguration, null, A.Fake<ICacheStore>()));
 
             // Then
             exception.ShouldBeOfType<ArgumentNullException>();
@@ -114,7 +114,7 @@ namespace Nancy.Tests.Unit
         {
             // Given
             var exception =
-                Record.Exception(() => new NancyEngine(this.requestDispatcher, A.Fake<INancyContextFactory>(), new[] { this.errorHandler }, A.Fake<IRequestTracing>(), A.Fake<ISessionStore>(), null));
+                Record.Exception(() => new NancyEngine(this.requestDispatcher, A.Fake<INancyContextFactory>(), new[] { this.statusCodeHandler }, A.Fake<IRequestTracing>(), this.diagnosticsConfiguration, A.Fake<ISessionStore>(), null));
 
             // Then
             exception.ShouldBeOfType<ArgumentNullException>();

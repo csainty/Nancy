@@ -35,7 +35,7 @@
         /// <param name="contextFactory">A factory for creating contexts</param>
         /// <param name="statusCodeHandlers">Error handlers</param>
         /// <param name="requestTracing">The request tracing instance.</param>
-        public NancyEngine(IRequestDispatcher dispatcher, INancyContextFactory contextFactory, IEnumerable<IStatusCodeHandler> errorHandlers, IRequestTracing requestTracing, DiagnosticsConfiguration diagnosticsConfiguration, ISessionStore sessionStore, ICacheStore cacheStore)
+        public NancyEngine(IRequestDispatcher dispatcher, INancyContextFactory contextFactory, IEnumerable<IStatusCodeHandler> statusCodeHandlers, IRequestTracing requestTracing, DiagnosticsConfiguration diagnosticsConfiguration, ISessionStore sessionStore, ICacheStore cacheStore)
         {
             if (dispatcher == null)
             {
@@ -66,8 +66,8 @@
             this.contextFactory = contextFactory;
             this.statusCodeHandlers = statusCodeHandlers;
             this.requestTracing = requestTracing;
-            this.sessionStore = sessionStore;
             this.diagnosticsConfiguration = diagnosticsConfiguration;
+            this.sessionStore = sessionStore;            
             this.cacheStore = cacheStore;
         }
 
