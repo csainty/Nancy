@@ -148,7 +148,7 @@ namespace Nancy.Hosting.Aspnet
             }
 
             context.Response.StatusCode = (int)response.StatusCode;
-            response.Contents.Invoke(context.Response.OutputStream);
+            response.Contents.Invoke(new NancyResponseStream(context.Response));
         }
 
         private static void SetHttpResponseHeaders(HttpContextBase context, Response response)
